@@ -28,7 +28,7 @@ public interface DbDiscountTesting {
 
 
 	// TODO: Add missing annotation
-	// TODO: Add container to mysql:8.0.33 with MYSQL_DATABASE env var equal to DB_NAME, MYSQL_ROOT_PASSWORD equal to DB_PASSWORD and exposed port EXPOSED_PORT
+	// TODO: Add container to mysql:9.1.0 with MYSQL_DATABASE env var equal to DB_NAME, MYSQL_ROOT_PASSWORD equal to DB_PASSWORD and exposed port EXPOSED_PORT
 	GenericContainer mysql = null;
 
 	@BeforeEach

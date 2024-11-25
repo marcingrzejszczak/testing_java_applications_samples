@@ -17,12 +17,12 @@
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
 	<properties>
-		<assertj-core.version>3.24.2</assertj-core.version>
-		<junit-bom.version>5.9.2</junit-bom.version>
+		<assertj-core.version>3.26.3</assertj-core.version>
+		<junit-bom.version>5.11.3</junit-bom.version>
 
-		<maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
-		<pitest-maven.version>1.14.1</pitest-maven.version>
-		<pitest-junit5-plugin.version>1.2.0</pitest-junit5-plugin.version>
+		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+		<pitest-maven.version>1.17.1</pitest-maven.version>
+		<pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
 	</properties>
 
 	<!-- Check https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-maven/pom.xml -->

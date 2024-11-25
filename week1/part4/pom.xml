@@ -18,7 +18,7 @@
 	<description>${project.artifactId}</description>
 
 	<properties>
-		<logback-classic.version>1.4.6</logback-classic.version>
+		<logback-classic.version>1.5.12</logback-classic.version>
 	</properties>
 
 	<dependencies>

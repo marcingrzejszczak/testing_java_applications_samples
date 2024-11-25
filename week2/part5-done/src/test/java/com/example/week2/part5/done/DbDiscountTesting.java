@@ -30,7 +30,7 @@ public interface DbDiscountTesting {
 
 	@Container
 	GenericContainer mysql =
-			new GenericContainer<>("mysql:8.0.33")
+			new GenericContainer<>("mysql:9.1.0")
 					.withEnv("MYSQL_DATABASE", DB_NAME)
 					.withEnv("MYSQL_ROOT_PASSWORD", DB_PASSWORD)
 					.withExposedPorts(EXPOSED_PORT);
