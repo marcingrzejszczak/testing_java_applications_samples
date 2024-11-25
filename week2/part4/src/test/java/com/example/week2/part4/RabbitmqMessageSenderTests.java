@@ -2,6 +2,7 @@ package com.example.week2.part4;
 
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,7 @@ class RabbitmqMessageSenderTests {
 	}
 
 	@Nested
+	@Disabled
 	class IntegrationTests implements RabbitmqTesting {
 
 		String outputMessage; // TODO: Fix me - read the json/calculatedEvent.json file

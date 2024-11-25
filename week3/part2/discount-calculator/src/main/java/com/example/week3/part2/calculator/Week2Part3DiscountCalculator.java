@@ -34,11 +34,14 @@ public class Week2Part3DiscountCalculator {
 	}
 
 	void run() {
-		try (Javalin javalin = configureJavalin().start(this.port)) {
+		Javalin javalin = configureJavalin().start(this.port);
+		try {
 			// waiting for requests
 			while (true) {
 
 			}
+		} finally {
+			javalin.stop();
 		}
 	}
 

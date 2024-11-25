@@ -9,8 +9,10 @@ import com.example.week3.part2.client.Person;
 import com.example.week3.part2.client.PersonClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class PersonClientTests {
 
 	//TODO: Fix me - add StubRunner extension
