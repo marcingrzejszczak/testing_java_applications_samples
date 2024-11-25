@@ -20,10 +20,13 @@
 	<modules>
 		<module>part2</module>
 		<module>part2-done</module>
+		<module>part2-more</module>
 		<module>part3</module>
 		<module>part3-done</module>
+		<module>part3-more</module>
 		<module>part4</module>
 		<module>part4-done</module>
+		<module>part4-more</module>
 	</modules>
 
 </project>
