@@ -26,7 +26,6 @@ public interface DbDiscountTesting {
 
 	int EXPOSED_PORT = 3306;
 
-
 	// TODO: Add missing annotation
 	// TODO: Add container to mysql:9.1.0 with MYSQL_DATABASE env var equal to DB_NAME, MYSQL_ROOT_PASSWORD equal to DB_PASSWORD and exposed port EXPOSED_PORT
 	GenericContainer mysql = null;
@@ -41,6 +40,7 @@ public interface DbDiscountTesting {
 	}
 
 	default String jdbcUrl() {
+		// TODO: What should be the jdbc url? Hint: mysql db, jdbc connection, port taken from testcontainers and DB_NAME from constants
 		return "jdbc:mysql://localhost:" + mysql.getMappedPort(EXPOSED_PORT) + "/" + DB_NAME;
 	}
 

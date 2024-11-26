@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,9 +48,13 @@ class DatabaseRateRepositoryTests {
 	@Nested
 	class UnitTests {
 
-		@ParameterizedTest(name = "{index} {0}")
-		@MethodSource("repoActions")
-		void should_throw_exception_when_issues_with_connection(String name, Consumer<DatabaseRateRepository> consumer) throws Exception {
+		// {0} - name
+		@Disabled
+		// @ParameterizedTest(name = "{index} {0}")
+		// TODO: We want to call identical code for save and getDiscountRate
+		// TODO: Consider writing a @MethodSource that will take a String name of the test case and "something" that will allow you to
+		// call the repository with save and getDiscountRate methods
+		void should_throw_exception_when_issues_with_connection(String name) throws Exception {
 
 			// TODO: Fix me - write the missing test
 			// given - a mock Connection throws a SQLException on statement creation
