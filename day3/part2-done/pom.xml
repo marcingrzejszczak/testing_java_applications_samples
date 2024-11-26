@@ -3,17 +3,19 @@
 		 xmlns="http://maven.apache.org/POM/4.0.0"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.example.testingworkshop</groupId>
-	<artifactId>testing-workshop-samples-parent</artifactId>
+
+	<parent>
+		<groupId>com.example.testingworkshop</groupId>
+		<artifactId>testing-workshop-samples-parent-day3</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>testing-workshop-samples-parent-day3-part2-done</artifactId>
 	<packaging>pom</packaging>
 
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
-	<version>1.0.0-SNAPSHOT</version>
-
-	<properties>
-		<java.version>17</java.version>
-	</properties>
 
 	<build>
 		<plugins>
@@ -23,21 +25,12 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>17</source>
-					<target>17</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
 	<modules>
-		<module>day1</module>
-		<module>day2</module>
-		<module>day3</module>
+		<module>discount-calculator</module>
+		<module>discount-calculator-client</module>
 	</modules>
 
 </project>
