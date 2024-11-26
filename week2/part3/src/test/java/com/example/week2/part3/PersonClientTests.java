@@ -2,8 +2,6 @@ package com.example.week2.part3;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -19,9 +17,8 @@ class PersonClientTests {
 	private static final PersonDetailsResponse.Status EXPECTED_STORED_RESPONSE_STATUS = PersonDetailsResponse.Status.STORED;
 
 	// TODO: Fix me - register a WireMock JUnit 5 extension with a dynamic port and static dsl
-	static WireMockExtension wm;
 
-	PersonClient personClient = new PersonClient(restTemplate(), "http://localhost:" + wm.getPort());
+	PersonClient personClient = new PersonClient(restTemplate(), "http://localhost:" + "TODO: Change me to a dynamic port from extension");
 
 	Person mrSmith = mrSmith();
 
@@ -33,36 +30,33 @@ class PersonClientTests {
 	class PersonUpdateTests {
 		@Test
 		void should_return_person_details_response_when_not_in_manual_processing() {
-			WireMock.stubFor(WireMock.post("/person/smith")
+			// TODO: Fix me - stub for post @ /person/smith
 					// TODO: Fix me - add application/json content-type matching
 					// TODO: Fix me - add json body matching to json mr smith
-					.willReturn(WireMock.aResponse()
 							// TODO: Fix me - add application/json content-type matching
-							.withBody(toJson(storedProcessingResponse()))));
+							// TODO: Fix me - return "processing" response
 
 			PersonDetailsResponse response = personClient.updatePersonDetails(mrSmith);
 
 			// Soft Assertions assert everything and throw exception at the end with the list of all failing assertions
-			SoftAssertions.assertSoftly(softAssertions -> {
+			// TODO: Add soft assertions from assertj
 				// TODO: Fix me - assert that the fields contain proper values
-			});
 		}
 
 		@Test
 		void should_fail_with_manual_processing_exception_for_manual_processing_status() {
-			WireMock.stubFor(WireMock.post("/person/smith")
+			// TODO: Fix me - stub for post @ /person/smith
 					// TODO: Fix me - add application/json content-type matching
 					// TODO: Fix me - add json body matching to json mr smith
-					.willReturn(WireMock.aResponse()
 							// TODO: Fix me - add application/json content-type matching
-							.withBody(toJson(manualProcessingResponse()))));
+							// TODO: Fix me - return "manual processing" response
 
 			// TODO: Fix me - add assertion, PersonInManualProcessingException should be thrown
 		}
 
 		@Test
 		void should_fail_with_timeout_from_server() {
-			WireMock.stubFor(WireMock.post("/person/smith"));
+			// TODO: Fix me - stub for post @ /person/smith
 					// TODO: Fix me - add application/json content-type matching
 					// TODO: Fix me - add json body matching to json mr smith
 					// TODO: Add fixed delay of 1000
@@ -72,15 +66,15 @@ class PersonClientTests {
 
 		@Test
 		void should_fail_with_connection_reset_by_peer_from_server() {
-			WireMock.stubFor(WireMock.post("/person/smith"));
-			// TODO: Add Fault.CONNECTION_RESET_BY_PEER fault
+			// TODO: Fix me - stub for post @ /person/smith
+				// TODO: Add Fault.CONNECTION_RESET_BY_PEER fault
 
 			// TODO: Fix me - add assertion, PersonNotStoredException should be thrown + check the root cause
 		}
 
 		@Test
 		void should_fail_with_empty_response_from_server() {
-			WireMock.stubFor(WireMock.post("/person/smith"));
+			// TODO: Fix me - stub for post @ /person/smith
 			// TODO: Add Fault.EMPTY_RESPONSE fault;
 
 			// TODO: Fix me - add assertion, PersonNotStoredException should be thrown + check the root cause
@@ -88,7 +82,7 @@ class PersonClientTests {
 
 		@Test
 		void should_fail_with_malformed_response_from_server() {
-			WireMock.stubFor(WireMock.post("/person/smith"));
+			// TODO: Fix me - stub for post @ /person/smith
 			// TODO: Add Fault.MALFORMED_RESPONSE_CHUNK fault
 
 			// TODO: Fix me - add assertion, PersonNotStoredException should be thrown + check the root cause
@@ -96,7 +90,7 @@ class PersonClientTests {
 
 		@Test
 		void should_fail_with_random_data_then_close_from_server() {
-			WireMock.stubFor(WireMock.post("/person/smith"));
+			// TODO: Fix me - stub for post @ /person/smith
 			// TODO: Add Fault.RANDOM_DATA_THEN_CLOSE fault
 
 			// TODO: Fix me - add assertion, PersonNotStoredException should be thrown + check the root cause
@@ -115,8 +109,8 @@ class PersonClientTests {
 	class PersonGetDiscountTests {
 		@Test
 		void should_return_discount_for_person() {
-			WireMock.stubFor(WireMock.get("/person/1/discount")
-					.willReturn(WireMock.aResponse()));
+			// TODO: Fix me - stub for get @ /person/1/discount
+					 // TODO: Fix me - response
 							// TODO: Fix me - add application/json content-type matching
 							// TODO: Fix me - add json body matching to discount response of mr smith with 10.5 discount rate
 
@@ -127,10 +121,10 @@ class PersonClientTests {
 
 		@Test
 		void should_return_no_discount_with_timeout_from_server() {
-			WireMock.stubFor(WireMock.get("/person/1/discount")
+			// TODO: Fix me - stub for get @ /person/1/discount
+			// TODO: Fix me - response
 					// TODO: Fix me - add application/json content-type matching
-					.willReturn(WireMock.aResponse()));
-			// TODO: Add Fixed delay of 1000 millis
+					// TODO: Add Fixed delay of 1000 millis
 
 			double response = personClient.getDiscount("1");
 
@@ -139,7 +133,7 @@ class PersonClientTests {
 
 		@Test
 		void should_return_no_discount_with_connection_reset_by_peer_from_server() {
-			WireMock.stubFor(WireMock.get("/person/1/discount"));
+			// TODO: Fix me - stub for get @ /person/1/discount
 			// TODO: Add Fault.CONNECTION_RESET_BY_PEER fault
 
 			double response = personClient.getDiscount("1");
@@ -149,7 +143,7 @@ class PersonClientTests {
 
 		@Test
 		void should_return_no_discount_with_empty_response_from_server() {
-			WireMock.stubFor(WireMock.get("/person/1/discount"));
+			// TODO: Fix me - stub for get @ /person/1/discount
 			// TODO: Add Fault.EMPTY_RESPONSE fault
 
 			double response = personClient.getDiscount("1");
@@ -159,7 +153,7 @@ class PersonClientTests {
 
 		@Test
 		void should_return_no_discount_with_malformed_response_from_server() {
-			WireMock.stubFor(WireMock.get("/person/1/discount"));
+			// TODO: Fix me - stub for get @ /person/1/discount
 			// TODO: Add Fault.MALFORMED_RESPONSE_CHUNK fault
 
 			double response = personClient.getDiscount("1");
@@ -169,7 +163,7 @@ class PersonClientTests {
 
 		@Test
 		void should_return_no_discount_with_random_data_then_close_from_server() {
-			WireMock.stubFor(WireMock.get("/person/1/discount"));
+			// TODO: Fix me - stub for get @ /person/1/discount
 			// TODO: Add Fault.RANDOM_DATA_THEN_CLOSE fault
 
 			double response = personClient.getDiscount("1");

@@ -2,7 +2,6 @@ package com.example.week2.part4;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.ConnectionFactory;
-import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -45,10 +44,7 @@ class AcceptanceTests {
 				}
 			}.calculateDiscount();
 
-			Awaitility.await()
-					.untilAsserted(() -> {
-						// TODO: Fix me - check if message was properly sent to broker
-					});
+			// TODO: Fix me - use Awaitility to assert if message was properly sent to broker
 		}
 
 	}

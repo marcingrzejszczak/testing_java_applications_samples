@@ -1,15 +1,12 @@
 package com.example.week2.part4;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.GetResponse;
 
 class TestRabbitmqMessageListener extends RabbitMqMessageListener {
-
-	AtomicReference<Person> message = new AtomicReference<>();
 
 	public TestRabbitmqMessageListener(String inputQueueName, ConnectionFactory factory, ObjectMapper objectMapper) {
 		super(inputQueueName, factory, objectMapper);
@@ -18,12 +15,13 @@ class TestRabbitmqMessageListener extends RabbitMqMessageListener {
 	@Override
 	Person readMessage(GetResponse response) throws IOException {
 		Person readMessage = super.readMessage(response);
-		message.set(readMessage);
+		// TODO: set the read message in a field (remember about concurrency)
 		return readMessage;
 	}
 
 	@Override
 	boolean pollingCondition() {
-		return message.get() == null;
+		// TODO: Change to wait until there's at least one message
+		return false;
 	}
 }

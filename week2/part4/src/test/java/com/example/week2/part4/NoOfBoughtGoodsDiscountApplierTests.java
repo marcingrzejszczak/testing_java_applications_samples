@@ -1,8 +1,6 @@
 package com.example.week2.part4;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 // TODO: Bonus
 class NoOfBoughtGoodsDiscountApplierTests {
@@ -12,8 +10,7 @@ class NoOfBoughtGoodsDiscountApplierTests {
 
 	}
 
-	@ParameterizedTest(name = "[{index}] For no of goods <{0}> expected rate is <{1}>")
-	@CsvSource({"5,5", "6,5", "4,0"})
+	// TODO: Parameterized test
 	void should_calculate_rate_based_on_number_of_goods(int noOfGoods, double expectedDiscountRate) {
 
 	}

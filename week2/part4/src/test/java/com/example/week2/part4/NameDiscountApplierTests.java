@@ -1,8 +1,6 @@
 package com.example.week2.part4;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 // TODO: Bonus
 class NameDiscountApplierTests {
@@ -12,8 +10,7 @@ class NameDiscountApplierTests {
 
 	}
 
-	@ParameterizedTest(name = "[{index}] For a name <{0}> expected rate is <{1}>")
-	@CsvSource({"nam,8", "name above threshold,8", "na,0"})
+	// TODO: parameterized test
 	void should_calculate_rate_based_on_name(String name, double expectedDiscountRate) {
 
 	}
