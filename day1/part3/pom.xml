@@ -17,4 +17,52 @@
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
 
+	<properties>
+		<assertj-core.version>3.26.3</assertj-core.version>
+		<mockito.version>5.14.2</mockito.version>
+		<junit-bom.version>5.11.3</junit-bom.version>
+
+		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+	</properties>
+
+	<!-- Check https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-maven/pom.xml -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 </project>
