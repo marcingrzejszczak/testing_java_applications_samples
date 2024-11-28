@@ -18,10 +18,11 @@ class RabbitmqMessageSenderTests {
 	}
 
 	@Nested
+	// TODO: Undisable
 	@Disabled
 	class IntegrationTests implements RabbitmqTesting {
 
-		String outputMessage; // TODO: Fix me - read the json/calculatedEvent.json file
+		String outputMessage; // TODO: Fix me - read the /json/calculatedEvent.json file
 
 		String outputQueue = "output";
 

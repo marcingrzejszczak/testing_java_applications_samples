@@ -1,6 +1,8 @@
 package com.example.week2.part4;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
@@ -43,7 +45,7 @@ interface RabbitmqTesting {
 
 	default String readFile(String classpathPath) {
 		try {
-			return null; // TODO: Fix me - read a file from classpath
+			return Files.readString(Path.of(RabbitmqTesting.class.getResource(classpathPath).toURI()));
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

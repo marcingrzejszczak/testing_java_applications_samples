@@ -23,6 +23,7 @@ class RabbitmqMessageListenerTests {
 	}
 
 	@Nested
+	// TODO: Undisable
 	@Disabled
 	class IntegrationTests implements RabbitmqTesting {
 
@@ -35,7 +36,7 @@ class RabbitmqMessageListenerTests {
 		@BeforeEach
 		void setup() {
 			listener = new RabbitMqMessageListener(inputQueue, connectionFactory(), new ObjectMapper()); // TODO: Fix me - use a test type, otherwise the test will never stop!
-			inputMessage = null; // TODO: Fix me - read the json/mrSmith.json file
+			inputMessage = null; // TODO: Fix me - read the /json/mrSmith.json file
 		}
 
 		@Test

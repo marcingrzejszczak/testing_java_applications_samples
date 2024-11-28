@@ -11,20 +11,20 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>testing-workshop-samples-parent-day3-part1</artifactId>
+	<artifactId>testing-workshop-samples-parent-day3-part4-more</artifactId>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
-
-
 	<properties>
+		<assertj-core.version>3.26.3</assertj-core.version>
 		<junit-bom.version>5.11.3</junit-bom.version>
+		<jqwick.version>1.9.1</jqwick.version>
 
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-		<archunit-junit5.version>1.3.0</archunit-junit5.version>
 	</properties>
 
+	<!-- Check https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-maven/pom.xml -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -38,27 +38,24 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- TODO: Is the archunit junit5 dependency correct? -->
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5</artifactId>
-			<version>${archunit-junit5.version}</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.jqwik</groupId>
+			<artifactId>jqwik</artifactId>
+			<version>${jqwick.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<!-- TODO: Put the PMD plugin here -->
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-			</plugin>
-		</plugins>
-	</build>
+
 </project>
