@@ -1,12 +1,11 @@
 package com.example.week2.part3;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 class PersonClientTests {
 
@@ -17,7 +16,9 @@ class PersonClientTests {
 	private static final PersonDetailsResponse.Status EXPECTED_STORED_RESPONSE_STATUS = PersonDetailsResponse.Status.STORED;
 
 	// TODO: Fix me - register a WireMock JUnit 5 extension with a dynamic port and static dsl
+	// TODO: Is there a problem with the Static DSL? Yes, if you run multiple extensions! To fix that use the WiremockExtension variable instead of WireMock.stubFor
 
+	// TODO: Fix the PORT to fetch the dynamic port
 	PersonClient personClient = new PersonClient(restTemplate(), "http://localhost:" + "TODO: Change me to a dynamic port from extension");
 
 	Person mrSmith = mrSmith();
