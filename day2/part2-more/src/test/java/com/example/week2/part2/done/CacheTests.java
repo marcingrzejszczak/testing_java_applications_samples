@@ -1,10 +1,6 @@
 package com.example.week2.part2.done;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +12,37 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 @SpringBootTest(classes = CacheTests.Config.class)
 class CacheTests {
 
 	@Autowired
-	TestProductionCachingService cachingService;
+	ProductionCachingService cachingService;
+
+	@Autowired
+	CacheManager cacheManager;
 
 	@Test
 	void should_return_value_from_cache() {
-		int firstCall = cachingService.multiplyByTwo(10);
-		int secondCall = cachingService.multiplyByTwo(10);
+		int cachedResult = cachingService.multiplyByTwo(10);
 
-		assertThat(firstCall).isEqualTo(secondCall);
+		assertThat(cachedResult).isEqualTo(20);
+		assertThat(valueFromCache(10)).isEqualTo(20);
 	}
 
 	@Test
 	void should_evict_cache_by_key() {
-		cachingService.multiplyByTwo(20);
-		int firstCallToNumber2 = cachingService.multiplyByTwo(30);
+		int cachedResult = cachingService.multiplyByTwo(20);
+		assertThat(cachedResult).isEqualTo(40);
+		assertThat(valueFromCache(20)).isEqualTo(40);
 
 		cachingService.evict(20);
 
-		assertThat(cachingService.multiplyByTwo(30)).isEqualTo(firstCallToNumber2);
-		assertThatExceptionOfType(IllegalStateException.class)
-				.isThrownBy(() -> cachingService.multiplyByTwo(20)).withMessage("BOOM!");
+		assertThat(valueFromCache(20)).isNull();
+	}
+
+	private Integer valueFromCache(int key) {
+		return cacheManager.getCache("cachingService").get(key, Integer.class);
 	}
 
 	@SpringBootConfiguration(proxyBeanMethods = false)
@@ -54,24 +55,9 @@ class CacheTests {
 		}
 
 		@Bean
-		@Primary // Assuming that there's been one in production
 		ProductionCachingService cachingService() {
-			return new TestProductionCachingService();
+			return new ProductionCachingService();
 		}
-	}
-}
-
-class TestProductionCachingService extends ProductionCachingService {
-	private final Map<Integer, Integer> counterMap = new HashMap<>();
-
-	@Override
-	public int multiplyByTwo(int input) {
-		Integer counter = counterMap.getOrDefault(input, 0);
-		if (counter == 0) {
-			counterMap.put(input, ++counter);
-			return super.multiplyByTwo(input);
-		}
-		throw new IllegalStateException("BOOM!");
 	}
 }
 
