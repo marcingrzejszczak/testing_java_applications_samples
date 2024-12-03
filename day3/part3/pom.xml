@@ -20,6 +20,7 @@
 	<properties>
 		<assertj-core.version>3.26.3</assertj-core.version>
 		<junit-bom.version>5.11.3</junit-bom.version>
+		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 	</properties>
 
 	<!-- Check https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-maven/pom.xml -->
@@ -51,4 +52,13 @@
 
 	<!-- TODO: Fix me - add PIT plugin and configure it to run in the post-integration-test Maven phase -->
 	<!-- HINT: Remember about adding org.pitest:pitest-junit5-plugin dependency -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

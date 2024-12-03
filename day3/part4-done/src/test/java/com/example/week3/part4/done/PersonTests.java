@@ -13,6 +13,9 @@ import static org.assertj.core.api.BDDAssertions.thenThrownBy;
 
 class PersonTests {
 
+	// TODO: Missing 0 creation timestamp
+	// TODO: Missing 0 goods
+
 	@Property
 	void should_create_person(@ForAll @Positive int creationTimestamp, @ForAll @StringLength(min = 2) String name, @ForAll @Positive int goods, @ForAll Occupation occupation) {
 		thenNoException().isThrownBy(() -> new Person(creationTimestamp, name, goods, occupation));
