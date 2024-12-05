@@ -27,20 +27,27 @@ public class DiscountCalculator implements Closeable {
 	void calculateTotalDiscount(Person person) {
 		log.info("Calculating total discount from {} appliers", discountAppliers.stream().map(DiscountApplier::getName).toList());
 		this.discountAppliers
-				.forEach(discountApplier -> CompletableFuture.runAsync(() -> {
-					log.info("Will calculate rate via {}", discountApplier.getName());
-					messageSender.sendMessage(new Message(EventType.TASK_DISCOUNT_CALCULATION_SUBMITTED, discountApplier.getName()));
-					Discount discountRate = discountApplier.getDiscountRate(person);
-					person.addDiscount(discountRate);
-				}, executorService).exceptionally(throwable -> {
-					log.error("Exception occurred while trying to calculate rate", throwable);
-					messageSender.sendMessage(new Message(EventType.TASK_DISCOUNT_CALCULATION_ERRORED, discountApplier.getName()));
-					person.addDiscount(new Discount("error", 0D));
-					return null;
-				}).thenAccept(unused -> {
-					messageSender.sendMessage(new Message(EventType.TASK_DISCOUNT_CALCULATION_FINISHED, discountApplier.getName()));
-					log.info("Calculated rate via {}", discountApplier.getName());
-				}));
+				.forEach(discountApplier -> run(person, discountApplier));
+	}
+
+	CompletableFuture<Void> run(Person person, DiscountApplier discountApplier) {
+		return CompletableFuture.runAsync(() -> {
+			log.info("Will calculate rate via {}", discountApplier.getName());
+			messageSender.sendMessage(
+					new Message(EventType.TASK_DISCOUNT_CALCULATION_SUBMITTED, discountApplier.getName()));
+			Discount discountRate = discountApplier.getDiscountRate(person);
+			person.addDiscount(discountRate);
+		}, executorService).exceptionally(throwable -> {
+			log.error("Exception occurred while trying to calculate rate", throwable);
+			messageSender.sendMessage(
+					new Message(EventType.TASK_DISCOUNT_CALCULATION_ERRORED, discountApplier.getName()));
+			person.addDiscount(new Discount("error", 0D));
+			return null;
+		}).thenAccept(unused -> {
+			messageSender.sendMessage(
+					new Message(EventType.TASK_DISCOUNT_CALCULATION_FINISHED, discountApplier.getName()));
+			log.info("Calculated rate via {}", discountApplier.getName());
+		});
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -28,18 +29,18 @@ class DiscountCalculatorTests {
 
 	@Test
 	void should_calculate_no_discount_when_no_appliers_present() {
-		try (DiscountCalculator discountCalculator = new DiscountCalculator(Collections.emptyList(), messageSender)) {
+		try (DiscountCalculator discountCalculator = new DiscountCalculator(Collections.emptyList(), messageSender) {
+			@Override
+			CompletableFuture<Void> run(Person person, DiscountApplier discountApplier) {
+				return CompletableFuture.completedFuture(null);
+			}
+		}) {
 			Person person = person();
 
 			discountCalculator.calculateTotalDiscount(person);
 
-			Awaitility.await()
-					// Give it a chance to run
-					.pollDelay(50, TimeUnit.MILLISECONDS)
-					.untilAsserted(() -> {
-						then(person.getTotalDiscount()).isNotSet();
-						BDDMockito.then(messageSender).shouldHaveNoInteractions();
-					});
+			then(person.getTotalDiscount()).isNotSet();
+			BDDMockito.then(messageSender).shouldHaveNoInteractions();
 		}
 	}
 
