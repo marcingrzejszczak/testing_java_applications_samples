@@ -1,4 +1,4 @@
-package com.example.week3.part4.done;
+package com.example.week3.part3.done;
 
 import net.jqwik.api.Example;
 import net.jqwik.api.ForAll;

@@ -6,14 +6,15 @@ import java.util.logging.Logger;
 public class NoOfBoughtGoodsDiscountApplier implements DiscountApplier {
 	private static final Logger log = Logger.getLogger(NoOfBoughtGoodsDiscountApplier.class.getName());
 
-	static final int THRESHOLD = 5;
+	// This should be configurable
+	static int THRESHOLD = 5;
 
-	static final double DISCOUNT_RATE = 5D;
+	static double DISCOUNT_RATE = 5D;
 
 	@Override
 	public double getDiscountRate(Person person) {
 		log.log(Level.INFO, "Calculating number of goods discount");
-		if (person.getNumberOfBoughtGoods() <= THRESHOLD) {
+		if (person.getNumberOfBoughtGoods() == null || person.getNumberOfBoughtGoods() < THRESHOLD) {
 			return 0D;
 		}
 		return DISCOUNT_RATE;

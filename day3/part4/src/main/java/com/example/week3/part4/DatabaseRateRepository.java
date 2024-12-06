@@ -1,4 +1,4 @@
-package com.example.week3.part3.done;
+package com.example.week3.part4;
 
 public class DatabaseRateRepository implements RateRepository {
 	@Override

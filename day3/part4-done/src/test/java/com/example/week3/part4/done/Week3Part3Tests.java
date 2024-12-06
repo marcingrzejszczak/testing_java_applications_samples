@@ -1,8 +1,8 @@
-package com.example.week3.part3.done;
+package com.example.week3.part4.done;
 
 import org.junit.jupiter.api.Test;
 
-import static com.example.week3.part3.done.assertion.DiscountAssert.then;
+import static com.example.week3.part4.done.assertion.DiscountAssert.then;
 import static org.assertj.core.api.BDDAssertions.thenThrownBy;
 
 class Week3Part3Tests {

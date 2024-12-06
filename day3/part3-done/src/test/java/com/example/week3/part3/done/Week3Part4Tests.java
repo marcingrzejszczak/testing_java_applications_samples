@@ -1,4 +1,4 @@
-package com.example.week3.part4.done;
+package com.example.week3.part3.done;
 
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
@@ -8,7 +8,7 @@ import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
 
-import static com.example.week3.part4.done.assertion.DiscountAssert.then;
+import static com.example.week3.part3.done.assertion.DiscountAssert.then;
 import static org.assertj.core.api.BDDAssertions.thenThrownBy;
 
 class Week3Part4Tests {

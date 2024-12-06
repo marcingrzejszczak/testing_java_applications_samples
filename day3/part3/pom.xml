@@ -20,6 +20,8 @@
 	<properties>
 		<assertj-core.version>3.26.3</assertj-core.version>
 		<junit-bom.version>5.11.3</junit-bom.version>
+		<jqwick.version>1.9.1</jqwick.version>
+
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 	</properties>
 
@@ -48,10 +50,13 @@
 			<version>${assertj-core.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.jqwik</groupId>
+			<artifactId>jqwik</artifactId>
+			<version>${jqwick.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
-	<!-- TODO: Fix me - add PIT plugin and configure it to run in the post-integration-test Maven phase -->
-	<!-- HINT: Remember about adding org.pitest:pitest-junit5-plugin dependency -->
 
 	<build>
 		<plugins>

@@ -20,10 +20,12 @@
 	<properties>
 		<assertj-core.version>3.26.3</assertj-core.version>
 		<junit-bom.version>5.11.3</junit-bom.version>
+		<spring.version>6.2.0</spring.version>
 
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 	</properties>
 
+	<!-- Check https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-maven/pom.xml -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -38,6 +40,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
@@ -46,6 +54,12 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

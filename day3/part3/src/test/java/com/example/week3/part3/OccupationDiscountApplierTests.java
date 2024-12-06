@@ -1,24 +1,20 @@
 package com.example.week3.part3;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
 class OccupationDiscountApplierTests {
 
-	@Test
-	void should_return_a_discount_rate_from_a_repository() {
-		double fixedRate = 10D;
-		OccupationDiscountApplier applier = new OccupationDiscountApplier(occupation -> fixedRate);
-
-		double discountRate = applier.getDiscountRate(person());
-
-		then(discountRate)
-				.as("Discount rate should be taken directly from the repository")
-				.isEqualTo(fixedRate);
+	// TODO: Fix me - convert to 1 Property Based Test - check the docs on how to set combinations of enums
+	@ParameterizedTest(name = "[{index}] For occupation <{0}> expected discount is <{1}>")
+	@CsvSource(textBlock = """
+			EMPLOYED, 10
+			UNEMPLOYED, 10
+			""")
+	void should_return_discount_for_occupation(Occupation occupation, double result) {
+		then(new OccupationDiscountApplier().getDiscountRate(new Person("foo", 1, occupation))).isEqualTo(result);
 	}
 
-	private static Person person() {
-		return new Person("name", 100, Occupation.UNEMPLOYED);
-	}
 }

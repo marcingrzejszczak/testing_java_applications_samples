@@ -8,16 +8,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DiscountAssertTests {
 
+	private static final String discountName = "test";
+
 	@Test
 	void should_not_throw_exception_when_no_discount() {
-		DiscountAssert discountAssert = new DiscountAssert(new Discount(0D));
+		DiscountAssert discountAssert = new DiscountAssert(new Discount(discountName, 0D));
 
 		assertThatNoException().isThrownBy(discountAssert::isNotSet);
 	}
 
 	@Test
 	void should_throw_exception_when_discount_present() {
-		DiscountAssert discountAssert = new DiscountAssert(new Discount(5D));
+		DiscountAssert discountAssert = new DiscountAssert(new Discount(discountName, 5D));
 
 		assertThatThrownBy(discountAssert::isNotSet)
 				.isInstanceOf(AssertionError.class)
@@ -26,14 +28,14 @@ class DiscountAssertTests {
 
 	@Test
 	void should_not_throw_exception_when_discount_rate_equal() {
-		DiscountAssert discountAssert = new DiscountAssert(new Discount(5D));
+		DiscountAssert discountAssert = new DiscountAssert(new Discount(discountName, 5D));
 
 		assertThatNoException().isThrownBy(() -> discountAssert.isEqualTo(5D));
 	}
 
 	@Test
 	void should_throw_exception_when_discount_rate_not_equal() {
-		DiscountAssert discountAssert = new DiscountAssert(new Discount(2D));
+		DiscountAssert discountAssert = new DiscountAssert(new Discount(discountName, 2D));
 
 		assertThatThrownBy(() -> discountAssert.isEqualTo(5D))
 				.isInstanceOf(AssertionError.class)

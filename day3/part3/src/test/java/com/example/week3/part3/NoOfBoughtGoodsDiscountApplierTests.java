@@ -1,36 +1,23 @@
 package com.example.week3.part3;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
 
 class NoOfBoughtGoodsDiscountApplierTests {
 
-	@Test
-	void should_return_a_discount_rate_when_person_has_no_of_goods_above_threshold() {
-		NoOfBoughtGoodsDiscountApplier applier = new NoOfBoughtGoodsDiscountApplier();
-
-		double discountRate = applier.getDiscountRate(personWithNumberOfGoodsAboveThreshold());
-
-		then(discountRate).isEqualTo(NoOfBoughtGoodsDiscountApplier.DISCOUNT_RATE);
-	}
-
-	@Test
-	void should_return_no_discount_rate_when_person_has_no_of_goods_below_threshold() {
-		NoOfBoughtGoodsDiscountApplier applier = new NoOfBoughtGoodsDiscountApplier();
-
-		double discountRate = applier.getDiscountRate(personWithNumberOfGoodsBelowThreshold());
-
-		then(discountRate).isEqualTo(0D);
-	}
-
-	private static Person personWithNumberOfGoodsAboveThreshold() {
-		return new Person("name", NoOfBoughtGoodsDiscountApplier.THRESHOLD + 1, Occupation.UNEMPLOYED);
-	}
-
-	private static Person personWithNumberOfGoodsBelowThreshold() {
-		return new Person("name", NoOfBoughtGoodsDiscountApplier.THRESHOLD - 1, Occupation.UNEMPLOYED);
+	// TODO: Fix me - convert to 2 Property Based Tests (one for discount, one for no discount)
+	//  check @IntRange on how to set min / max values
+	@ParameterizedTest(name = "[{index}] For number of goods <{0}> expected discount is <{1}>")
+	@CsvSource(textBlock = """
+			3, 0
+			5, 0
+			6, 5
+			""")
+	void should_return_discount_for_name(Integer numberOfGoods, double result) {
+		then(new NoOfBoughtGoodsDiscountApplier().getDiscountRate(new Person("foo", numberOfGoods, Occupation.UNEMPLOYED))).isEqualTo(result);
 	}
 
 }
