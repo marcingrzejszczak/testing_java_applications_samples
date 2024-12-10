@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day1-part2-more'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+}
+
+test {
+    useJUnit() // Specifies JUnit 4 for testing
+}
+
+tasks.named('test') {
+    // Additional configurations for testing can be added here
+}

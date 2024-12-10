@@ -8,11 +8,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<artifactId>testing-workshop-samples-day2-part2</artifactId>
+	<artifactId>testing-workshop-samples-day2-part4-more</artifactId>
 	<packaging>jar</packaging>
 
+	<groupId>com.example.testingworkshop</groupId>
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
+	<version>1.0.0-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>

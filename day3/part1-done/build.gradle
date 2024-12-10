@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'pmd'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-parent-day3-part1-done'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // BOM dependency management
+    implementation platform('org.junit:junit-bom:5.11.3')
+
+    // Compile dependencies
+    implementation 'ch.qos.logback:logback-core:1.5.12'
+    implementation 'ch.qos.logback:logback-classic:1.5.12'
+
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// PMD plugin configuration
+pmd {
+    toolVersion = '7.8.0'
+    ruleSetFiles = files("${projectDir}/src/test/resources/ruleset.xml")
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.required.set(false) // Disable XML reports
+        html.required.set(true) // Enable HTML reports
+    }
+}
+
+tasks.check {
+    dependsOn(tasks.withType(Pmd))
+}

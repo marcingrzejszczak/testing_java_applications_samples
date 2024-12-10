@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day2-part2'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // BOM dependency management
+    implementation platform('org.junit:junit-bom:5.11.3')
+
+    // Compile dependencies
+    implementation 'org.springframework:spring-context:6.2.0'
+
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation 'org.springframework:spring-test:6.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}

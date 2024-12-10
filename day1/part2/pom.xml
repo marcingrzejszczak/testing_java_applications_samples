@@ -18,7 +18,6 @@
 	<description>${project.artifactId}</description>
 
 	<properties>
-		<assertj-core.version>3.26.3</assertj-core.version>
 		<junit-bom.version>5.11.3</junit-bom.version>
 
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>

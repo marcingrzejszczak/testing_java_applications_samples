@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day1-part4-more'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // BOM dependency management
+    implementation platform('org.junit:junit-bom:5.11.3')
+
+    // Runtime dependencies
+    implementation 'ch.qos.logback:logback-classic:1.5.12'
+
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}

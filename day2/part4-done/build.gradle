@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day2-part4-done'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Dependency Management (BOM)
+    implementation platform('org.junit:junit-bom:5.11.3')
+
+    // Compile dependencies
+    implementation 'com.rabbitmq:amqp-client:5.23.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
+    implementation 'ch.qos.logback:logback-core:1.5.12'
+    implementation 'ch.qos.logback:logback-classic:1.5.12'
+    implementation 'org.slf4j:slf4j-api:2.0.16'
+
+    // Test dependencies
+    testImplementation 'org.testcontainers:junit-jupiter:1.20.4'
+    testImplementation 'org.awaitility:awaitility:4.2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
+    testImplementation 'org.skyscreamer:jsonassert:1.5.3'
+}
+
+test {
+    useJUnitPlatform()
+}

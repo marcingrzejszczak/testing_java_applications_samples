@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day1-part3'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // BOM dependency management
+    implementation platform('org.junit:junit-bom:5.11.3')
+
+    // Dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation 'org.mockito:mockito-core:5.14.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
+}
+
+test {
+    useJUnitPlatform()
+}

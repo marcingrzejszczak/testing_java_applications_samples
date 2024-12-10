@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'discount-calculator-client'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Runtime dependencies
+    implementation 'ch.qos.logback:logback-core:1.5.12'
+    implementation 'ch.qos.logback:logback-classic:1.5.12'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
+
+    // Test dependencies
+    testImplementation platform('org.junit:junit-bom:5.11.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+
+    // TODO: Add Spring Cloud Starter Contract Stub Runner dependency
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.junit:junit-bom:5.11.3'
+        // TODO: Add Spring Cloud BOM dependency
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

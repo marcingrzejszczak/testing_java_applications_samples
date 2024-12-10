@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-parent-day3-part4'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Test dependencies
+    testImplementation platform('org.junit:junit-bom:5.11.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '1.2.1'
+    targetClasses = ['com.example.*'] // Adjust for your project's packages
+    targetTests = ['com.example.*'] // Adjust as needed
+    threads = 4 // Parallel threads for mutation testing
+    outputFormats = ['HTML'] // Generate an HTML report
+}
+
+build.dependsOn("pitest")

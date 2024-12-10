@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-parent-day3-part3-done'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Test dependencies
+    testImplementation platform('org.junit:junit-bom:5.11.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation 'net.jqwik:jqwik:1.9.1'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example.testingworkshop'
+version = '1.0.0-SNAPSHOT'
+
+description = 'testing-workshop-samples-day1-part2-done'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('org.junit:junit-bom:5.11.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+}
+
+test {
+    useJUnitPlatform {
+
+        // Default profile behavior
+        excludeTags 'slow'
+
+        // Configure behavior for specific profiles using project properties
+        if (project.hasProperty('testProfile')) {
+            if (project.testProfile == 'slow') {
+                includeTags 'slow'
+            } else if (project.testProfile == 'all') {
+                excludeTags.clear()
+            }
+        }
+    }
+}
+
