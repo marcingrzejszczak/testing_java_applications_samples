@@ -19,9 +19,8 @@ class AcceptanceTests {
 	void should_calculate_maximum_discount() {
 		int goodsAboveThreshold = 100;
 		Occupation maxDiscountOccupation = Occupation.EMPLOYED;
-		Person person = new Person("name with length above threshold", goodsAboveThreshold, maxDiscountOccupation);
 
-		Discount discount = new Week1Part2().calculateDiscount(person);
+		Discount discount = new Week1Part2().calculateDiscount("name with length above threshold", String.valueOf(goodsAboveThreshold), String.valueOf(maxDiscountOccupation));
 
 		then(discount)
 				.as("Maximum discount is <8> for name, <5> for no of goods, <10> for occupation; total of <23>")

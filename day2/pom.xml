@@ -25,10 +25,12 @@
 		<module>part3-done</module>
 		<module>part4</module>
 		<module>part4-done</module>
-		<module>part4-more</module>
+		<module>part4-spring</module>
+		<module>part4-spring-done</module>
 		<module>part5</module>
 		<module>part5-done</module>
-		<module>part5-more</module>
+		<module>part5-spring</module>
+		<module>part5-spring-done</module>
 	</modules>
 
 </project>
