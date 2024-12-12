@@ -46,7 +46,7 @@ class RabbitMqMessageListenerTests {
 	}
 
 	// This is a test slice
-	@TestConfiguration(proxyBeanMethods = false)
+	@SpringBootConfiguration(proxyBeanMethods = false)
 	@ImportAutoConfiguration(RabbitAutoConfiguration.class)
 	static class Config {
 
