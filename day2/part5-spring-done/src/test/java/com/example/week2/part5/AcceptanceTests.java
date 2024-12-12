@@ -22,14 +22,14 @@ class AcceptanceTests {
 	static MySQLContainer mySQLContainer = new MySQLContainer(DockerImageName.parse("mysql:9.1.0"));
 
 	@Autowired
-	SpringDataDiscountService service;
+	DiscountRepository discountRepository;
 
 	@Autowired
 	DiscountCalculator discountCalculator;
 
 	@Test
-	void should_calculate_a_discount() throws SQLException {
-		service.addDiscount(new Person("for employed", 10, Occupation.EMPLOYED));
+	void should_calculate_a_discount()  {
+		discountRepository.save(new Discount("for employed", Occupation.EMPLOYED, 10));
 
 		DiscountDto calculatedDiscount = discountCalculator.calculateTotalDiscountRate(new Person("foo", 100, Occupation.EMPLOYED));
 

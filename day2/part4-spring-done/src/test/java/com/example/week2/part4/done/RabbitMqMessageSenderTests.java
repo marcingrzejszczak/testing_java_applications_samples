@@ -24,13 +24,17 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@SpringBootTest(properties = "rabbitmq.output.queue=test-output-queue")
+import com.example.week2.part4.done.RabbitMqMessageSenderTests.Config;
+
+@SpringBootTest(properties = "rabbitmq.output.queue=test-output-queue",
+		classes = Config.class)
 @Testcontainers
 class RabbitMqMessageSenderTests {
 
 	@Container
 	@ServiceConnection
-	static RabbitMQContainer rabbitMQContainer = new RabbitMQContainer(DockerImageName.parse("rabbitmq:4.0.4"));
+	static RabbitMQContainer rabbitMQContainer
+			= new RabbitMQContainer(DockerImageName.parse("rabbitmq:4.0.4"));
 
 	@Autowired
 	RabbitMqMessageSender rabbitMqMessageSender;

@@ -23,8 +23,8 @@ class AcceptanceTests {
 	// TODO: Use SpringDataDiscountService and DiscountCalculator beans
 
 	@Test
-	void should_calculate_a_discount() throws SQLException {
-		// TODO: Use the service to store the data in the database
+	void should_calculate_a_discount() {
+		// TODO: Use the repository to store the data in the database
 
 		// TODO: Use the discount calculator to retrieve the calculated discount
 

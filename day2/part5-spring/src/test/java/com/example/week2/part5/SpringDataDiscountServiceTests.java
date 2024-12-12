@@ -38,7 +38,7 @@ class SpringDataDiscountServiceTests {
 	}
 
 	@Test
-	void should_store_data_in_a_database() throws SQLException {
+	void should_store_data_in_a_database() {
 		// TODO: Create a discount name
 
 		// TODO: Save discount through the service
@@ -56,7 +56,7 @@ class SpringDataDiscountServiceTests {
 	}
 
 	@Test
-	void should_rollback_transaction() {
+	void should_rollback_transaction_on_error() {
 		service.setThrowException(true);
 
 		// TODO: Assert an exception if we try to add a discount with some occupation
@@ -94,7 +94,7 @@ class SpringDataDiscountServiceTests {
 		@Override
 		public void addDiscount(Person person) {
 			super.addDiscount(person);
-			// TODO: What do you think of this? Are there any problems with this?
+			// TODO: What do you think of this? Are there any problems with this? Can the tests be ran in parallel?
 			if (throwException) {
 				throw new IllegalStateException("BOOM!");
 			}

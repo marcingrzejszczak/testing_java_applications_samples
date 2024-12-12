@@ -1,5 +1,6 @@
 package com.example.week2.part4;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,18 +8,21 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.RabbitMQContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@SpringBootTest(properties = "rabbitmq.output.queue=test-output-queue")
+@SpringBootTest(properties = "rabbitmq.output.queue=test-output-queue",
+		classes = RabbitMqMessageSenderTests.Config.class)
 @Testcontainers
+// TODO: Undisable me
+@Disabled
 class RabbitMqMessageSenderTests {
 
 	@Container
@@ -41,7 +45,7 @@ class RabbitMqMessageSenderTests {
 	}
 
 	// This is a test slice
-	@SpringBootConfiguration(proxyBeanMethods = false)
+	@TestConfiguration(proxyBeanMethods = false)
 	@ImportAutoConfiguration(RabbitAutoConfiguration.class)
 	static class Config {
 

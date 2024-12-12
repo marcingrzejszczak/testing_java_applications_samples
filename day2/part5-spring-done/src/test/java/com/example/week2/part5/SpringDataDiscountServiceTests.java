@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+// Test slice!
 @DataJpaTest
 @ContextConfiguration(classes = SpringDataDiscountServiceTests.Config.class)
 @Testcontainers
@@ -45,7 +46,7 @@ class SpringDataDiscountServiceTests {
 	}
 
 	@Test
-	void should_store_data_in_a_database() throws SQLException {
+	void should_store_data_in_a_database() {
 		String discountName = "foo";
 
 		service.addDiscount(new Person(discountName, 10, Occupation.EMPLOYED));
@@ -54,7 +55,7 @@ class SpringDataDiscountServiceTests {
 	}
 
 	@Test
-	void should_get_discount_rate_from_db() throws SQLException {
+	void should_get_discount_rate_from_db() {
 		discountRepository.save(new Discount("bar", Occupation.WONT_TELL, 10));
 
 		double discountRate = service.getDiscountRate(Occupation.WONT_TELL);
@@ -63,9 +64,10 @@ class SpringDataDiscountServiceTests {
 	}
 
 	@Test
-	void should_rollback_transaction() {
+	void should_rollback_transaction_on_error() {
 		service.setThrowException(true);
-		BDDAssertions.thenThrownBy(() -> service.addDiscount(new Person("johnny", 100, Occupation.UNEMPLOYED)))
+		BDDAssertions.thenThrownBy(() -> service.addDiscount(
+				new Person("johnny", 100, Occupation.UNEMPLOYED)))
 				.isInstanceOf(IllegalStateException.class).hasMessageContaining("BOOM!");
 
 		assertThat(service.getDiscountRate(Occupation.UNEMPLOYED)).isZero();

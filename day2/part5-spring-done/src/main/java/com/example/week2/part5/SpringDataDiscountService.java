@@ -10,7 +10,6 @@ import java.util.Random;
 @Service
 class SpringDataDiscountService {
 
-	private static final Logger log = LoggerFactory.getLogger(SpringDataDiscountService.class);
 	private final DiscountRepository discountRepository;
 
 	SpringDataDiscountService(DiscountRepository discountRepository) {

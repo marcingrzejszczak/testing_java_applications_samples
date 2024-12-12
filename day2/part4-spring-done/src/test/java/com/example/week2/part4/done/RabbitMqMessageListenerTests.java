@@ -20,13 +20,17 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@SpringBootTest(properties = "rabbitmq.input.queue=test-queue")
+import com.example.week2.part4.done.RabbitMqMessageListenerTests.Config;
+
+@SpringBootTest(properties = "rabbitmq.input.queue=test-queue",
+		classes = Config.class)
 @Testcontainers
 class RabbitMqMessageListenerTests {
 
 	@Container
-	@ServiceConnection // usun
-	static RabbitMQContainer rabbitMQContainer = new RabbitMQContainer(DockerImageName.parse("rabbitmq:4.0.4"));
+	@ServiceConnection
+	static RabbitMQContainer rabbitMQContainer
+			= new RabbitMQContainer(DockerImageName.parse("rabbitmq:4.0.4"));
 
 	@Autowired
 	RabbitTemplate rabbitTemplate;
@@ -39,11 +43,15 @@ class RabbitMqMessageListenerTests {
 
 	@Test
 	void should_calculate_total_discount_and_send_a_message_to_broker() {
-		rabbitTemplate.convertAndSend(inputQueueName, new Person("smith", 100, Occupation.EMPLOYED));
+		rabbitTemplate.convertAndSend(inputQueueName,
+									  new Person("smith", 100, Occupation.EMPLOYED));
 
-		Awaitility.await().untilAsserted(() -> then(discountCalculator).should().calculateTotalDiscountRate(new Person("smith", 100, Occupation.EMPLOYED)));
+		Awaitility.await()
+				  .untilAsserted(() ->
+										 then(discountCalculator).should().calculateTotalDiscountRate(new Person("smith", 100, Occupation.EMPLOYED)));
 	}
 
+	// This is a test slice
 	@SpringBootConfiguration(proxyBeanMethods = false)
 	@ImportAutoConfiguration(RabbitAutoConfiguration.class)
 	static class Config {
