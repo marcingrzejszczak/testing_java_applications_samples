@@ -6,12 +6,12 @@
 
 	<parent>
 		<groupId>com.example.testingworkshop</groupId>
-		<artifactId>testing-workshop-samples-parent</artifactId>
+		<artifactId>testing-workshop-samples-parent-day3</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>testing-workshop-samples-parent-day3</artifactId>
+	<artifactId>testing-workshop-samples-parent-day3-part2-spring-done</artifactId>
 	<packaging>pom</packaging>
 
 	<name>${project.artifactId}</name>
@@ -29,16 +29,8 @@
 	</build>
 
 	<modules>
-		<module>part1</module>
-		<module>part1-done</module>
-		<module>part2</module>
-		<module>part2-done</module>
-		<module>part2-spring</module>
-		<module>part2-spring-done</module>
-		<module>part3</module>
-		<module>part3-done</module>
-		<module>part4</module>
-		<module>part4-done</module>
+		<module>discount-calculator</module>
+		<module>discount-calculator-client</module>
 	</modules>
 
 </project>

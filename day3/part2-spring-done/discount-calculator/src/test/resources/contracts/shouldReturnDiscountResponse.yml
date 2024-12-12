@@ -1,0 +1,24 @@
+# TODO: Unignore me
+ignored: true
+request:
+  method: POST
+  # TODO: Change me
+  url: /changeme
+  body:
+    # TODO: Change me
+    fillMe: out
+  headers:
+    Content-Type: application/json
+  matchers:
+    body:
+      # TODO: Change me
+      - path: $.['pathToGoodsAttribute']
+        type: by_regex
+        value: "[0-9]+"
+response:
+  status: 200
+  # TODO: Change me
+  body:
+    fillMe: out
+  headers:
+    Content-Type: application/json

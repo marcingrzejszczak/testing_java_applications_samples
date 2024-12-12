@@ -35,5 +35,5 @@ test {
 }
 
 contracts {
-    baseClassForTests = '' // TODO: FQN of the base class
+    baseClassForTests = 'com.example.week3.part2.more.calculator.done.BaseClass'
 }
