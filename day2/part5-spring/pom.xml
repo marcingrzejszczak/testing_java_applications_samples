@@ -8,7 +8,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<artifactId>testing-workshop-samples-day2-part5-more</artifactId>
+	<artifactId>testing-workshop-samples-day2-part5-spring</artifactId>
 	<packaging>jar</packaging>
 
 	<groupId>com.example.testingworkshop</groupId>
@@ -63,4 +63,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -36,28 +36,6 @@
 					<target>17</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>${exec-maven-plugin.version}</version>
-				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<executable>./gradlew</executable>
-					<arguments>
-						<argument>build</argument>
-						<argument>pTML</argument>
-					</arguments>
-					<workingDirectory>${project.basedir}</workingDirectory>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
@@ -66,4 +44,36 @@
 		<module>day2</module>
 		<module>day3</module>
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>gradle</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec-maven-plugin.version}</version>
+						<inherited>false</inherited>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>./gradlew</executable>
+							<arguments>
+								<argument>build</argument>
+								<argument>pTML</argument>
+							</arguments>
+							<workingDirectory>${project.basedir}</workingDirectory>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

@@ -25,7 +25,6 @@ import org.testcontainers.utility.DockerImageName;
 class RabbitMqMessageListenerTests {
 
 	@Container
-	// TODO: Fix me - sth is missing here, check https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
 	@ServiceConnection // usun
 	static RabbitMQContainer rabbitMQContainer = new RabbitMQContainer(DockerImageName.parse("rabbitmq:4.0.4"));
 
@@ -40,7 +39,6 @@ class RabbitMqMessageListenerTests {
 
 	@Test
 	void should_calculate_total_discount_and_send_a_message_to_broker() {
-		// TODO: Hint check convertAndSend method on RabbitTemplate
 		rabbitTemplate.convertAndSend(inputQueueName, new Person("smith", 100, Occupation.EMPLOYED));
 
 		Awaitility.await().untilAsserted(() -> then(discountCalculator).should().calculateTotalDiscountRate(new Person("smith", 100, Occupation.EMPLOYED)));
