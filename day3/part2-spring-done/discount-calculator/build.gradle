@@ -37,3 +37,13 @@ test {
 contracts {
     baseClassForTests = 'com.example.week3.part2.more.calculator.BaseClass'
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact bootJar
+
+            artifact verifierStubsJar
+        }
+    }
+}
