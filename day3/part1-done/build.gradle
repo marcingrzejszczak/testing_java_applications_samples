@@ -31,6 +31,7 @@ test {
 
 // PMD plugin configuration
 pmd {
+    consoleOutput = true
     toolVersion = '7.8.0'
     ruleSetFiles = files("${projectDir}/src/test/resources/ruleset.xml")
 }
