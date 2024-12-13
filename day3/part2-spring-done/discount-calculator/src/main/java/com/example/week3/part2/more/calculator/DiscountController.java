@@ -14,6 +14,9 @@ public class DiscountController {
 
 	@PostMapping("/discount")
 	DiscountResponse discount(@RequestBody Person person) {
+		if (person.getNumberOfBoughtGoods() <= 0) {
+			throw new NoBoughtGoodsException(person);
+		}
 		this.discountCalculator.calculateTotalDiscountRate(person);
 		return new DiscountResponse(person.getName(), person.getDiscountRate());
 	}

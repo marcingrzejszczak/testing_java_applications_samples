@@ -8,11 +8,6 @@ request:
     discountRate: 0
   headers:
     Content-Type: application/json
-  matchers:
-    body:
-      - path: $.['numberOfBoughtGoods']
-        type: by_regex
-        value: "[0-9]+"
 response:
   status: 200
   body:

@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvcBuilder;
 
 import com.example.week3.part2.more.calculator.BaseClass.Config;
 
@@ -18,11 +19,11 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 public class BaseClass {
 
 	@Autowired
-	DiscountController discountController;
+	MockMvcBuilder mockMvcBuilder;
 
 	@BeforeEach
 	void setup() {
-		RestAssuredMockMvc.standaloneSetup(discountController);
+		RestAssuredMockMvc.standaloneSetup(mockMvcBuilder);
 	}
 
 	@TestConfiguration(proxyBeanMethods = false)
