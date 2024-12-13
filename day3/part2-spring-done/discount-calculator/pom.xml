@@ -71,7 +71,7 @@
 				<version>${spring-cloud-contract.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<baseClassForTests>com.example.week3.part2.more.calculator.done.BaseClass</baseClassForTests>
+					<baseClassForTests>com.example.week3.part2.more.calculator.BaseClass</baseClassForTests>
 				</configuration>
 			</plugin>
 		</plugins>

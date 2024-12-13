@@ -35,5 +35,5 @@ test {
 }
 
 contracts {
-    baseClassForTests = 'com.example.week3.part2.more.calculator.done.BaseClass'
+    baseClassForTests = 'com.example.week3.part2.more.calculator.BaseClass'
 }

@@ -1,24 +1,22 @@
-# TODO: Unignore me
-ignored: true
 request:
   method: POST
-  # TODO: Change me
-  url: /changeme
+  url: /discount
   body:
-    # TODO: Change me
-    fillMe: out
+    name: foo
+    numberOfBoughtGoods: 10
+    occupation: EMPLOYED
+    discountRate: 0
   headers:
     Content-Type: application/json
   matchers:
     body:
-      # TODO: Change me
-      - path: $.['pathToGoodsAttribute']
+      - path: $.['numberOfBoughtGoods']
         type: by_regex
         value: "[0-9]+"
 response:
   status: 200
-  # TODO: Change me
   body:
-    fillMe: out
+    personName: foo
+    discountRate: 10
   headers:
     Content-Type: application/json

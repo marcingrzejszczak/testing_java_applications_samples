@@ -1,34 +1,41 @@
 package com.example.week3.part2.more.calculator;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.ContextConfiguration;
+
+import com.example.week3.part2.more.calculator.BaseClass.Config;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
-// TODO: A SpringBootTest with Config from below
-// TODO: Undisable
-@Disabled
+@WebMvcTest(controllers = DiscountController.class)
+@ContextConfiguration(classes = Config.class)
 public class BaseClass {
 
-	// TODO: Autowire the DiscountController
+	@Autowired
+	DiscountController discountController;
 
 	@BeforeEach
 	void setup() {
-		// TODO: Add the discount controller bean
-		// RestAssuredMockMvc.standaloneSetup();
+		RestAssuredMockMvc.standaloneSetup(discountController);
 	}
 
 	@TestConfiguration(proxyBeanMethods = false)
 	static class Config {
 
-		// TODO: Create a bean that will set a fixed value of discount rate for person
 		@Bean
-		DiscountApplier testDiscountApplier() {
-			return person -> { };
+		DiscountCalculator testDiscountApplier() {
+			return new DiscountCalculator(Collections.emptyList()) {
+				@Override
+				void calculateTotalDiscountRate(Person person) {
+					person.setDiscountRate(10);
+				}
+			};
 		}
 	}
 }
