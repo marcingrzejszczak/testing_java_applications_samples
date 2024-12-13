@@ -8,13 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // TODO: Use @AutoConfigureStubRunner Local mode and maven coordinates of the other module
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@RestClientTest
 // TODO: Undisable me
 @Disabled
 class PersonClientTests {

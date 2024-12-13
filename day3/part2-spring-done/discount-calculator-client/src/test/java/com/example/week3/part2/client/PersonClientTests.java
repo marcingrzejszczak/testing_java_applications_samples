@@ -3,26 +3,30 @@ package com.example.week3.part2.client;
 import java.net.http.HttpClient;
 import java.time.Duration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
+import org.springframework.boot.test.autoconfigure.webservices.client.WebServiceClientTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties.StubsMode;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-// TODO: Use @AutoConfigureStubRunner Local mode and maven coordinates of the other module
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
-// TODO: Undisable me
-@Disabled
+@AutoConfigureStubRunner(stubsMode = StubsMode.LOCAL, ids = "com.example.testingworkshop:discount-calculator-spring-done")
+@RestClientTest
 class PersonClientTests {
 
 	@Autowired
 	ObjectMapper objectMapper;
 
-	// TODO: @StubRunnerPort with the artifact id of the other module
+	@StubRunnerPort("discount-calculator-spring-done")
 	int discountCalculatorPort;
 
 	PersonClient personClient;
@@ -30,8 +34,8 @@ class PersonClientTests {
 	@BeforeEach
 	void setup() {
 		personClient = new PersonClient(HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(1)).build(),
-										"http://localhost:" + discountCalculatorPort,
-										objectMapper);
+													 "http://localhost:" + discountCalculatorPort,
+													 objectMapper);
 	}
 
 	@Test
